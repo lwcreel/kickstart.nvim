@@ -3,6 +3,11 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- tab options
+vim.opt.expandtab = false
+vim.opt.tabstop = 2
+vim.opt.expandtab = 2
+
 -- disable netrw for nvim-tree
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -66,7 +71,7 @@ vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 15
 
 -- [[ Basic Keymaps ]]
 -- Clear highlights on search when pressing <Esc> in normal mode
@@ -76,11 +81,6 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
--- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
--- is not what someone will guess without a bit more experience.
---
--- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
--- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- TIP: Disable arrow keys in normal mode
@@ -530,7 +530,11 @@ require('lazy').setup({
     config = function()
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
-      luasnip.config.setup {}
+      luasnip.config.setup {
+        history = true,
+        region_check_events = 'InsertEnter',
+        delete_check_events = 'TextChanged,InsertLeave',
+      }
 
       cmp.setup {
         snippet = {
@@ -660,9 +664,9 @@ require('lazy').setup({
   },
 
   -- require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.indent_line',
-  -- require 'kickstart.plugins.lint',
-  -- require 'kickstart.plugins.autopairs',
+  require 'kickstart.plugins.indent_line',
+  require 'kickstart.plugins.lint',
+  require 'kickstart.plugins.autopairs',
   require 'kickstart.plugins.neo-tree',
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
