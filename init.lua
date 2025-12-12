@@ -6,7 +6,7 @@ vim.g.maplocalleader = ' '
 -- tab options
 vim.opt.expandtab = false
 vim.opt.tabstop = 2
-vim.opt.expandtab = 2
+vim.opt.shiftwidth = 2
 
 -- disable netrw for nvim-tree
 vim.g.loaded_netrw = 1
