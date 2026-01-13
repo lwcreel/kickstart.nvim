@@ -4,7 +4,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- tab options
-vim.opt.expandtab = false
+vim.opt.expandtab = true
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 
@@ -431,6 +431,8 @@ require('lazy').setup({
         'prettier',
         'pyright',
         'black',
+        'rust-analyzer',
+        'golines',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -485,6 +487,7 @@ require('lazy').setup({
       formatters_by_ft = {
         lua = { 'stylua' },
         python = { 'isort', 'black' },
+        java = { 'clang_format' },
         javascript = { 'prettierd', 'prettier' },
         javascriptreact = { 'prettierd', 'prettier' },
         typescript = { 'prettierd', 'prettier' },
@@ -492,7 +495,7 @@ require('lazy').setup({
         html = { 'prettierd', 'prettier' },
         c = { 'clang_format', '--fallback-style=webkit' },
         cpp = { 'clang_format', '--fallback-style=webkit' },
-        sql = { 'pgformatter' },
+        go = { 'golines' },
       },
     },
   },
@@ -600,6 +603,14 @@ require('lazy').setup({
       vim.cmd.colorscheme 'tokyonight-moon'
     end,
   },
+  --{
+  --  'polirritmico/monokai-nightasty.nvim',
+  --  priority = 1000,
+  --  config = function()
+  --    require('monokai-nightasty').setup {}
+  --    vim.cmd.colorscheme 'monokai-nightasty'
+  --  end,
+  --},
 
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
@@ -642,6 +653,7 @@ require('lazy').setup({
         'tsx',
         'json',
         'bash',
+        'java',
         'c',
         'diff',
         'html',
