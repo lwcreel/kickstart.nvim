@@ -588,19 +588,14 @@ require('lazy').setup({
       }
     end,
   },
-
   {
-    'folke/tokyonight.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
+    'navarasu/onedark.nvim',
+    priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
-      ---@diagnostic disable-next-line: missing-fields
-      require('tokyonight').setup {
-        styles = {
-          comments = { italic = false }, -- Disable italics in comments
-        },
+      require('onedark').setup {
+        style = 'darker',
       }
-
-      vim.cmd.colorscheme 'tokyonight-moon'
+      require('onedark').load()
     end,
   },
   --{
